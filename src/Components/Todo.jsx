@@ -19,24 +19,26 @@ const Todo = ({item, onUpdate, onDelete}) => {
             setisEdit(false);
         }
         return(
-            <form className='todoUpdateForm' onSubmit={handleSubmit}>
+            <form className='createForm' onSubmit={handleSubmit}>
                 <input type="text" className='todoInput' onChange={handleChange} value={newValue}/>
-                <button className='button' onClick={handleClick}>Update</button>
+                <button className='button-udpate' onClick={handleClick}><img src="./Images/update.png" className='fotos'/></button>
             </form>
         );
     }
     function TodoElement(){
         return(
             <div className='totoInfo'>
+                <div className='texto'>
             {item.title}
-            <button onClick={()=>setisEdit(true)}>Editar</button>
-            <button onClick={(e)=>onDelete(item.id)}>Eliminar</button>
+            </div>
+            <button onClick={()=>setisEdit(true)} className="editar"><img src="./Images/edit.png" className='fotos'/></button>
+            <button onClick={(e)=>onDelete(item.id)} className="eliminar"><img src="./Images/delete.png" className='fotos'/></button>
             </div>
         )
     }
   return (
     //Renderizado de elementos en lista de forma automatica
-    <div className='todo'>
+    <div className='createForm, elementos'>
         {isEdit ? <FormEdit/>:<TodoElement/>}
 
     </div>
