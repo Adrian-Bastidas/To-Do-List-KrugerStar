@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Todo from './Todo';
 
 const TodoApp = () => {
     const [title, setTitle]=useState("Hola");
@@ -20,9 +21,21 @@ const TodoApp = () => {
         const temp=[...todos];
         temp.unshift(newTodo);
         settodos(temp)
+        setTitle('')
+    }
+    function handleUpdate(id, value){
+        const temp=[...todos]
+        const item=temp.find((item)=> item.id === id);
+        item.title=value;
+        settodos(temp);
+    }
+    function handleDelete(id){
+        const temp=todos.filter(item=>item.id!==id);
+
+        settodos(temp);
     }
   return (
-    <div className='cointainer'>
+    <div className='container'>
         <form className='createForm' onSubmit={handleSubmit}>
             <input onChange={handleChange} className='tInput' value={title}/>
             <input 
@@ -34,7 +47,7 @@ const TodoApp = () => {
         <div className='todosContainer'>
             {
                 todos.map(item=>(
-                    <div key={item.id}>{item.title}</div>//Renderizado de elementos en lista de forma automatica
+                    <Todo key={item.id} item={item} onUpdate={handleUpdate} onDelete={handleDelete}/>
                 ))
             }
         </div>
