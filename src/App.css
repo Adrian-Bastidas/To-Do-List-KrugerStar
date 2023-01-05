@@ -1,12 +1,75 @@
-body{
-  background-color:#323233 ;
-}
-.App {
+h1{
   text-align: center;
+  margin-top: 7%;
+}
+body{
+  background: linear-gradient(to right, #7dded9, #9cb0e5); 
+}
+.createForm{
+  margin-left: 15%;
+  padding: 5%;
+  width: 90%;
+}
+.tInput{
+  width: 60%;
+  height: 100%;
+  border: none; /* Oculta los bordes por defecto */
+  border-bottom: 1px solid #333; /* Añade un borde superior de 1px y color #333 */
+  outline: none;
+}
+.buttonCreate{
+  border: none;
+  background: none;
+  width: 0%;
 }
 .container{
+  display: flex;
+  flex-direction: column;
   background-color: white;
   width: 40%;
-  margin-top: 10%;
+  height: 100%;
+  margin-top: 2%;
   margin-left: 30%;
+  box-shadow: 2px 2px 20px black;;
+  border: 0;
+  border-radius:1rem;
+}
+.elementos{
+  width: 90%;
+  margin-left: 10%;
+}
+.texto{
+  width: 60%;
+}
+.totoInfo{
+  padding: 3%;
+  display: flex;
+}
+.editar{
+  background-color: #ff700d;
+  border: none;
+  outline: none;
+}
+.eliminar{
+  background-color: #ff5c56;
+  border: none;
+}
+.fotos{
+  width: 30px;
+}
+button{
+  border-radius: 10%;
+  margin: 0 2%;
+}
+.todoInput{
+  border: none; /* Oculta los bordes por defecto */
+  border-bottom: 1px solid #333; /* Añade un borde superior de 1px y color #333 */
+  outline: none;
+  margin-left: -20%;
+  width: 60%;
+  height: 100%;
+}
+.button-udpate{
+  background-color: #ff328e;
+  border: none;
 }

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Todo from './Todo';
 
 const TodoApp = () => {
-    const [title, setTitle]=useState("Hola");
+    const [title, setTitle]=useState("");
     const [todos,settodos]=useState([]);
 
     function handleChange(event){
@@ -10,24 +10,50 @@ const TodoApp = () => {
         setTitle(value)
     }
     function handleSubmit(e){
-        e.preventDefault();
+        if(title!=""){
+            e.preventDefault();
 
-        const newTodo={
-            id: crypto.randomUUID(),
-            title:title,
-            completed: false
+            const newTodo={
+                id: crypto.randomUUID(),
+                title:title,
+                completed: false
+            }
+    
+            const temp=[...todos];
+            temp.unshift(newTodo);
+            settodos(temp)
+            setTitle('')
+        }
+        else{
+            e.preventDefault();
+
+            const newTodo={
+                id: crypto.randomUUID(),
+                title:"Aqui tienes una nota vacia, puedes editarla cuando quieras",
+                completed: false
+            }
+    
+            const temp=[...todos];
+            temp.unshift(newTodo);
+            settodos(temp)
+            setTitle('')
         }
 
-        const temp=[...todos];
-        temp.unshift(newTodo);
-        settodos(temp)
-        setTitle('')
     }
     function handleUpdate(id, value){
-        const temp=[...todos]
-        const item=temp.find((item)=> item.id === id);
-        item.title=value;
-        settodos(temp);
+        if(value!=""){
+            const temp=[...todos]
+            const item=temp.find((item)=> item.id === id);
+            item.title=value;
+            settodos(temp);
+        }
+        else{
+            const temp=[...todos]
+            const item=temp.find((item)=> item.id === id);
+            item.title="Aqui tienes una nota vacia, puedes editarla cuando quieras";
+            settodos(temp);
+        }
+
     }
     function handleDelete(id){
         const temp=todos.filter(item=>item.id!==id);
@@ -37,12 +63,11 @@ const TodoApp = () => {
   return (
     <div className='container'>
         <form className='createForm' onSubmit={handleSubmit}>
-            <input onChange={handleChange} className='tInput' value={title}/>
-            <input 
+            <input onChange={handleChange} className='tInput' placeholder="Escribe aqui tu siguiente tarea" value={title}/>
+            <button 
             onClick={handleSubmit}
             type="submit" 
-            value="Create todo" 
-            className='buttonCreate'/>
+            className='buttonCreate'><img src="./Images/create.png" className='fotos'/></button>
         </form>
         <div className='todosContainer'>
             {
